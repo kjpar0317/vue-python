@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  python:
+    container_name: python
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: 
+      MYSQL_USER: 
+      MYSQL_PASSWORD: 
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    depends_on:
+        - db
+    # volumes:
+    #     - ./python/scripts:/usr/src/app/
+    networks:
+      - mynetwork
+  db:
+    image: mariadb
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: 
+      MYSQL_USER: 
+      MYSQL_PASSWORD: 
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysqld.conf:/etc/mysql/conf.d/config-file.cnf
+      - dbdata:/var/lib/mysql
+      - dblog:/var/log/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    # networks:
+    #   - mynetwork
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_PORT: 3306
+  #     PMA_ARBITRARY: 1
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   networks:
+  #     - mynetwork
+volumes:
+  dbdata: {}
+  dblog: {}
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,0 +1,37 @@
+{
+  "name": "vue-python",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "ag-grid-community": "^27.1.0",
+    "ag-grid-vue3": "^27.1.0",
+    "apexcharts": "^3.33.2",
+    "axios": "^0.26.1",
+    "chroma-js": "^2.4.2",
+    "pinia": "^2.0.12",
+    "vee-validate": "^4.5.10",
+    "vue": "^3.2.25",
+    "vue-class-component": "^8.0.0-rc.1",
+    "vue-final-modal": "^3.4.3",
+    "vue-query": "^1.25.0",
+    "vue-router": "^4.0.14",
+    "vue-toastification": "^2.0.0-rc.5",
+    "vue3-apexcharts": "^1.4.1",
+    "vue3-grid-layout": "^1.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.2",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "autoprefixer": "^10.4.4",
+    "daisyui": "^2.10.0",
+    "postcss": "^8.4.12",
+    "prettier-plugin-tailwindcss": "^0.1.7",
+    "tailwindcss": "^3.0.23",
+    "vite": "^2.8.0"
+  }
+}
