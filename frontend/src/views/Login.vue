@@ -206,7 +206,6 @@ export default {
     const router = useRouter();   
     const { mutate } = useMutation((values) => loginApi(values), {
       onSuccess: (data, params) => {
-        console.log(data)
         if (data) {
           sessionStorage.setItem("id", params.id);
           sessionStorage.setItem("token", data.token);

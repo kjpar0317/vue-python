@@ -35,7 +35,7 @@ def reset_session_context(context: Token) -> None:
 engine = create_async_engine(engine_uri, pool_recycle=3600)
 
 
-def disconnect():
+async def disconnect():
     if engine is not None:
         engine.dispose()
 

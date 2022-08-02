@@ -24,14 +24,11 @@ async function responseValidate(error) {
     return "api server connection error";
   }
 
-  console.log(error.response);
-
   if (error.response.data) {
     toast.error(error.response.data);
 
     if (error.response.status === 401) {
-      sessionStorage.removeItem("email");
-      // sessionStorage.removeItem("expire");
+      sessionStorage.removeItem("id");
       sessionStorage.removeItem("token");
 
       setTimeout(() => {
