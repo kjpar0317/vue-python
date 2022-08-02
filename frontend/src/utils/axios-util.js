@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useToast } from "vue-toastification";
 
-const toast = useToast();
-
 const axiosUtils = axios.create({
   baseURL: "",
   // baseURL: `${process.env.REACT_APP_BASE_URI}`,
@@ -10,11 +8,15 @@ const axiosUtils = axios.create({
 });
 
 async function responseValidate(error) {
+  const toast = useToast();
+
   // 네트워크 연결 오류
   if (!error.response) {
     toast.error("네트워크 연결 오류");
     return "network fail";
   }
+
+  console.log(error.response);
 
   // API 서버 접속 오류
   if (error.response.status === 404 || error.response.status === 504) {
@@ -22,19 +24,7 @@ async function responseValidate(error) {
     return "api server connection error";
   }
 
-  if (error.response.data.message) {
-    toast.error(error.response.data.message);
-
-    if (error.response.status === 401) {
-      sessionStorage.removeItem("email");
-      // sessionStorage.removeItem("expire");
-      sessionStorage.removeItem("token");
-
-      window.location.replace("/");
-    }
-
-    return error.response.data.message;
-  }
+  console.log(error.response);
 
   if (error.response.data) {
     toast.error(error.response.data);
@@ -44,15 +34,13 @@ async function responseValidate(error) {
       // sessionStorage.removeItem("expire");
       sessionStorage.removeItem("token");
 
-      window.location.replace("/");
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 2000);
     }
-
-    return error.response.data;
   }
 
-  if (error.response) {
-    return error.response.status;
-  }
+  return error.response.status;
 }
 
 axiosUtils.interceptors.request.use(

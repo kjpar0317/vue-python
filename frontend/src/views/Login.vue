@@ -112,8 +112,8 @@
         >
           <div class="pt-4 pb-2">
             <Field
-              name="email"
-              placeholder="Email"
+              name="id"
+              placeholder="ID"
               :rules="isRequired"
               class="block w-full p-4 text-lg bg-black rounded-sm"
             />
@@ -205,10 +205,11 @@ export default {
   setup() {
     const router = useRouter();   
     const { mutate } = useMutation((values) => loginApi(values), {
-      onSuccess: (data) => {
+      onSuccess: (data, params) => {
+        console.log(data)
         if (data) {
+          sessionStorage.setItem("id", params.id);
           sessionStorage.setItem("token", data.token);
-          sessionStorage.setItem("email", data.email);
 
           router.push("/");
         }

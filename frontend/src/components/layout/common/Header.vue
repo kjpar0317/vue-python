@@ -243,8 +243,8 @@ export default {
       store.setTheme(theme);
     };
     const handleLogOut = () => {
+      sessionStorage.removeItem("id");
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("email");
 
       router.push("/login");
     };
