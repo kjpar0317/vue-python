@@ -6,7 +6,7 @@ class GridFilterModel(BaseModel):
     filterType: str
     type: str
     filter: str
-    filterTo: str
+    filterTo: Optional[str]
 
 
 class GridSortModel(BaseModel):
